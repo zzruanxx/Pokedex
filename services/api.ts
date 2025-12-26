@@ -39,8 +39,15 @@ export async function getPokemonListWithDetails(
   
   // Fetch details for each Pokemon in parallel
   const pokemonPromises = listResponse.results.map(async (item) => {
-    const id = item.url.split('/').filter(Boolean).pop();
-    return getPokemonDetails(id!);
+    // Extract ID from URL like "https://pokeapi.co/api/v2/pokemon/1/"
+    const urlParts = item.url.split('/').filter(Boolean);
+    const id = urlParts[urlParts.length - 1];
+    
+    if (!id) {
+      throw new Error(`Failed to extract Pokemon ID from URL: ${item.url}`);
+    }
+    
+    return getPokemonDetails(id);
   });
   
   return Promise.all(pokemonPromises);

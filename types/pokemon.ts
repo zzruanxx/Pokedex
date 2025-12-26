@@ -10,9 +10,9 @@ export interface PokemonType {
 
 export interface PokemonSprites {
   front_default: string;
-  other: {
-    'official-artwork': {
-      front_default: string;
+  other?: {
+    'official-artwork'?: {
+      front_default?: string;
     };
   };
 }
