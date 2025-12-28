@@ -7,10 +7,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Pokedex</h1>
-    <input type="text" id="pokemon-input" placeholder="Digite o nome ou ID do Pokémon">
-    <button onclick="searchPokemon()">Buscar</button>
-    <div id="pokemon-info"></div>
+    <div class="container">
+        <h1>Pokedex</h1>
+        <div class="search-section">
+            <label for="pokemon-input">Digite o nome ou ID do Pokémon:</label>
+            <input type="text" id="pokemon-input" placeholder="Ex.: Pikachu ou 25">
+            <button onclick="searchPokemon()">Buscar</button>
+        </div>
+        <div id="pokemon-info" class="pokemon-card" style="display: none;">
+            <div class="loading" id="loading">Carregando...</div>
+            <div class="error" id="error" style="display: none;"></div>
+            <img id="pokemon-image" alt="Imagem do Pokémon">
+            <h2 id="pokemon-name"></h2>
+            <p id="pokemon-types"></p>
+            <p id="pokemon-height"></p>
+            <p id="pokemon-weight"></p>
+            <div id="pokemon-stats"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
