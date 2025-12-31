@@ -41,6 +41,11 @@ export default function Home() {
     setTimeout(() => setSelectedPokemon(null), 300);
   };
 
+  const handleSearchSubmit = () => {
+    setPage(0);
+    // nothing else required — filter uses searchTerm state
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-100 to-white py-8 px-4">
       <div className="max-w-7xl mx-auto">
@@ -53,7 +58,14 @@ export default function Home() {
         </p>
 
         {/* Search Bar */}
-        <SearchBar value={searchTerm} onChange={setSearchTerm} />
+        <SearchBar value={searchTerm} onChange={setSearchTerm} onSubmit={handleSearchSubmit} />
+
+        {/* Result count */}
+        {!isLoading && filteredPokemon && (
+          <div className="text-center text-sm text-gray-600 mb-6">
+            Resultados: {filteredPokemon.length}
+          </div>
+        )}
 
         {/* Error State */}
         {error && (

@@ -34,6 +34,9 @@ export default function PokemonModal({ pokemon, isOpen, onClose }: PokemonModalP
 
   return (
     <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Detalhes de ${pokemon.name}`}
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
       onClick={onClose}
     >
@@ -50,6 +53,7 @@ export default function PokemonModal({ pokemon, isOpen, onClose }: PokemonModalP
             </div>
             <button
               onClick={onClose}
+              aria-label="Fechar modal"
               className="text-gray-500 hover:text-gray-700 text-3xl leading-none"
             >
               ×

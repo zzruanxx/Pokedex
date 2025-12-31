@@ -1,5 +1,6 @@
 async function searchPokemon() {
-    const input = document.getElementById('pokemon-input').value.toLowerCase().trim();
+    const inputEl = document.getElementById('pokemon-input');
+    const input = inputEl.value.toLowerCase().trim();
     const infoDiv = document.getElementById('pokemon-info');
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
@@ -27,8 +28,11 @@ async function searchPokemon() {
         const data = await response.json();
 
         // Preencher dados
-        image.src = data.sprites.front_default;
+        image.src = data.sprites.front_default || data.sprites.other?.['official-artwork']?.front_default || '';
         image.alt = `Imagem de ${data.name}`;
+        if (!image.src) image.style.display = 'none';
+        else image.style.display = 'block';
+
         name.textContent = data.name.charAt(0).toUpperCase() + data.name.slice(1);
         types.textContent = `Tipos: ${data.types.map(t => t.type.name).join(', ')}`;
         height.textContent = `Altura: ${data.height / 10} m`;
@@ -51,3 +55,16 @@ function showError(message) {
     errorDiv.style.display = 'block';
     infoDiv.style.display = 'block';
 }
+
+// enable Enter key on input
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('pokemon-input');
+    if (input) {
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchPokemon();
+            }
+        });
+    }
+});

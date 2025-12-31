@@ -9,11 +9,21 @@ interface PokemonCardProps {
 
 export default function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
   const imageUrl = pokemon.sprites.other?.['official-artwork']?.front_default || pokemon.sprites.front_default;
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick?.();
+    }
+  };
   
   return (
     <div 
+      role="button"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
       onClick={onClick}
-      className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow cursor-pointer border border-gray-200"
+      className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl hover:scale-[1.02] transform transition-all cursor-pointer border border-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
     >
       <div className="relative w-full h-48 mb-3">
         <Image
