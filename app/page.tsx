@@ -7,7 +7,7 @@ import { Pokemon } from '@/types/pokemon';
 import PokemonCard from '@/components/PokemonCard';
 import PokemonCardSkeleton from '@/components/PokemonCardSkeleton';
 import SearchBar from '@/components/SearchBar';
-import PokemonModal from '@/components/PokemonModal';
+import PokemonModal from '@/components/PokemonModal'
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
