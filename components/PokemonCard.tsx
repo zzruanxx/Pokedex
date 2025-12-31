@@ -1,3 +1,4 @@
+import React from 'react';
 import { Pokemon } from '@/types/pokemon';
 import { typeColors } from '@/constants/pokemon';
 import Image from 'next/image';

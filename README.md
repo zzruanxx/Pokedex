@@ -12,8 +12,9 @@ Uma aplicação web simples e divertida para visualizar informações sobre Pok�
 - ⚡ Integração direta com a PokeAPI (sem backend necessário).
 
 ## 🚀 Instalação
-1. Clone o repositório: `git clone https://github.com/zzruanxx/Pokedex.git`
-2. Abra o arquivo `index.html` em um navegador ou use um servidor local (ex.: `python -m http.server`).
+1. Instale dependências: `npm install`
+2. Rode em modo dev: `npm run dev`
+3. Abra no navegador: `http://localhost:3000`
 
 ## 🎮 Uso
 - Abra `index.html` no navegador.
