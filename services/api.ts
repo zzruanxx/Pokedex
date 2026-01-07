@@ -34,7 +34,7 @@ export async function getPokemonDetails(
 export async function getPokemonListWithDetails(
   limit: number = 20,
   offset: number = 0
-): Promise<Pokemon[]> {
+): Promise<{ pokemon: Pokemon[]; hasMore: boolean }> {
   const listResponse = await getPokemonList(limit, offset);
   
   // Fetch details for each Pokemon in parallel
@@ -50,5 +50,10 @@ export async function getPokemonListWithDetails(
     return getPokemonDetails(id);
   });
   
-  return Promise.all(pokemonPromises);
+  const pokemon = await Promise.all(pokemonPromises);
+  
+  return {
+    pokemon,
+    hasMore: listResponse.next !== null,
+  };
 }

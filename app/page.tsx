@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getPokemonListWithDetails, getPokemonDetails } from '@/services/api';
+import { getPokemonListWithDetails } from '@/services/api';
 import { Pokemon } from '@/types/pokemon';
 import PokemonCard from '@/components/PokemonCard';
 import PokemonCardSkeleton from '@/components/PokemonCardSkeleton';
@@ -17,10 +17,13 @@ export default function Home() {
   const itemsPerPage = 20;
 
   // Fetch Pokemon list with details
-  const { data: pokemonList, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['pokemonList', page],
     queryFn: () => getPokemonListWithDetails(itemsPerPage, page * itemsPerPage),
   });
+
+  const pokemonList = data?.pokemon;
+  const hasMore = data?.hasMore ?? false;
 
   // Filter Pokemon based on search term
   const filteredPokemon = pokemonList?.filter((pokemon) => {
@@ -117,7 +120,8 @@ export default function Home() {
                 </span>
                 <button
                   onClick={() => setPage((p) => p + 1)}
-                  className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-colors"
+                  disabled={!hasMore}
+                  className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-red-600 transition-colors"
                 >
                   Próxima
                 </button>
