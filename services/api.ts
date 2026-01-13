@@ -1,6 +1,7 @@
 import { Pokemon, PokemonListResponse } from '@/types/pokemon';
 
-const POKEAPI_BASE_URL = 'https://api.pokeapi.co/api/v2';
+// Official PokeAPI base URL (the api.pokeapi.co hostname may not resolve in some environments)
+const POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2';
 
 export async function getPokemonList(
   limit: number = 20,
