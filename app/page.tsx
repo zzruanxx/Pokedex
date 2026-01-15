@@ -14,7 +14,7 @@ export default function Home() {
   const [page, setPage] = useState(0);
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const itemsPerPage = 20;
+  const itemsPerPage = 36; // Increased from 20 to 36 for better display
 
   // Fetch Pokemon list with details
   const { data, isLoading, error } = useQuery({
@@ -50,23 +50,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-red-100 to-white py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <h1 className="text-5xl font-bold text-center mb-2 text-red-600">
-          Pokédex
-        </h1>
-        <p className="text-center text-gray-600 mb-8">
-          Explore o mundo dos Pokémon
-        </p>
+        <div className="text-center mb-8 animate-fadeIn">
+          <h1 className="text-6xl font-extrabold text-center mb-3 bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 bg-clip-text text-transparent drop-shadow-sm">
+            Pokédex
+          </h1>
+          <p className="text-center text-gray-700 text-lg font-medium">
+            Explore o mundo dos Pokémon ✨
+          </p>
+        </div>
 
         {/* Search Bar */}
         <SearchBar value={searchTerm} onChange={setSearchTerm} onSubmit={handleSearchSubmit} />
 
         {/* Result count */}
         {!isLoading && filteredPokemon && (
-          <div className="text-center text-sm text-gray-600 mb-6">
-            Resultados: {filteredPokemon.length}
+          <div className="text-center text-sm text-gray-700 mb-6 font-semibold">
+            {filteredPokemon.length} Pokémon{filteredPokemon.length !== 1 ? 's' : ''} encontrado{filteredPokemon.length !== 1 ? 's' : ''}
           </div>
         )}
 
@@ -111,19 +113,19 @@ export default function Home() {
                 <button
                   onClick={() => setPage((p) => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-red-600 transition-colors"
+                  className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100"
                 >
-                  Anterior
+                  ← Anterior
                 </button>
-                <span className="px-6 py-3 bg-white rounded-lg font-semibold border border-gray-300">
+                <span className="px-8 py-4 bg-white rounded-xl font-bold border-2 border-gray-300 shadow-md flex items-center">
                   Página {page + 1}
                 </span>
                 <button
                   onClick={() => setPage((p) => p + 1)}
                   disabled={!hasMore}
-                  className="px-6 py-3 bg-red-500 text-white rounded-lg font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-red-600 transition-colors"
+                  className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100"
                 >
-                  Próxima
+                  Próxima →
                 </button>
               </div>
             )}
