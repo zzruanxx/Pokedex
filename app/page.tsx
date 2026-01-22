@@ -50,14 +50,14 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 py-8 px-4">
+    <div className="bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 py-4 sm:py-8 px-2 sm:px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 animate-fadeIn">
-          <h1 className="text-6xl font-extrabold text-center mb-3 bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 bg-clip-text text-transparent drop-shadow-sm">
+        <div className="text-center mb-6 sm:mb-8 animate-fadeIn">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-center mb-3 bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 bg-clip-text text-transparent drop-shadow-sm">
             Pokédex
           </h1>
-          <p className="text-center text-gray-700 text-lg font-medium">
+          <p className="text-center text-gray-700 text-base sm:text-lg font-medium px-4">
             Explore o mundo dos Pokémon ✨
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function Home() {
 
         {/* Loading State */}
         {isLoading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mb-8">
             {Array.from({ length: itemsPerPage }).map((_, index) => (
               <PokemonCardSkeleton key={index} />
             ))}
@@ -96,7 +96,7 @@ export default function Home() {
                 Nenhum Pokémon encontrado
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 mb-8">
                 {filteredPokemon.map((pokemon) => (
                   <PokemonCard
                     key={pokemon.id}
@@ -109,21 +109,21 @@ export default function Home() {
 
             {/* Pagination */}
             {searchTerm === '' && (
-              <div className="flex justify-center gap-4 mt-8">
+              <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mt-8">
                 <button
                   onClick={() => setPage((p) => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100 text-sm sm:text-base"
                 >
                   ← Anterior
                 </button>
-                <span className="px-8 py-4 bg-white rounded-xl font-bold border-2 border-gray-300 shadow-md flex items-center">
+                <span className="px-6 sm:px-8 py-3 sm:py-4 bg-white rounded-xl font-bold border-2 border-gray-300 shadow-md flex items-center justify-center text-sm sm:text-base">
                   Página {page + 1}
                 </span>
                 <button
                   onClick={() => setPage((p) => p + 1)}
                   disabled={!hasMore}
-                  className="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-bold disabled:from-gray-300 disabled:to-gray-300 disabled:cursor-not-allowed hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:shadow-none transform hover:scale-105 disabled:scale-100 text-sm sm:text-base"
                 >
                   Próxima →
                 </button>
